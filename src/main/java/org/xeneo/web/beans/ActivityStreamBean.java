@@ -23,4 +23,8 @@ public class ActivityStreamBean {
     public List<Activity> getActivityStream() {
         return as.getActivities("http://blub", "http://blab", 50);
     }    
+    
+    public String getTestString() {
+        return "Hello World";
+    }
 }

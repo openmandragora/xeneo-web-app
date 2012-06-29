@@ -10,137 +10,149 @@
 
     <name>XENEO Web Application</name>
     <description>Implementation of the XENEO Web Application.</description>
-    <url>http://www.xeneo.org</url>
+
+    <parent>
+        <artifactId>xeneo-parent-project</artifactId>
+        <groupId>org.xeneo</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <properties>        
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <xeneo.version>1.0-SNAPSHOT</xeneo.version>
+        
+        <jdbc.url>jdbc:mysql://127.0.0.1:3306/</jdbc.url>
+        <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+        <jdbc.dbname>flower</jdbc.dbname>
+        <jdbc.username>root</jdbc.username>
+        <jdbc.password>root</jdbc.password>
     </properties>
 
-    <dependencies>
+    <dependencies>        
+        <!-- JSF Libs -->
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-impl</artifactId>
-            <version>2.1.6</version>            
+            <version>2.1.7</version>            
         </dependency>        
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-api</artifactId>
-            <version>2.1.6</version>            
+            <version>2.1.7</version>            
         </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>3.2</version>
+        </dependency>
+        
+        <!-- Spring Libs -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>3.0.5.RELEASE</version>            
+            <version>3.1.1.RELEASE</version>            
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>3.1.1.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>org.xeneo</groupId>
-            <artifactId>xeneo-service-mocks</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>3.1.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>3.1.0.RELEASE</version>
+        </dependency>
+        
+        <!-- XENEO Libs -->
         <dependency>
             <groupId>org.xeneo</groupId>
             <artifactId>xeneo-core-api</artifactId>
-            <version>1.0-SNAPSHOT</version>            
+            <version>${xeneo.version}</version>            
         </dependency>
+        <dependency>
+            <groupId>org.xeneo</groupId>
+            <artifactId>xeneo-db-impl</artifactId>
+            <version>${xeneo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.xeneo</groupId>
+            <artifactId>xeneo-simple-plugin-management</artifactId>
+            <version>${xeneo.version}</version>
+        </dependency>
+        
+        <!-- Activity Plugins -->
+        <dependency>
+            <groupId>at.markusmeingassner</groupId>
+            <artifactId>dropbox-activity-plugin</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.xeneo.plugin</groupId>
+            <artifactId>delicious-activity-plugin</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.6.5</version>
+        </dependency>  
+                
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <version>2.5</version>    
+            <scope>provided</scope>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository> 
-            <id>com.springsource.repository.bundles.release</id> 
-            <name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name> 
-            <url>http://repository.springsource.com/maven/bundles/release</url> 
-        </repository> 
-        <repository> 
-            <id>com.springsource.repository.bundles.external</id> 
-            <name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name> 
-            <url>http://repository.springsource.com/maven/bundles/external</url> 
-        </repository>
-        <repository>
-            <id>Springframework milestone</id>
-            <url>http://maven.springframework.org/milestone</url>
-        </repository>  
-    </repositories>
-    
-    <pluginRepositories>
-        <pluginRepository>
-            <id>apache.snapshots</id>
-            <name>Apache Snapshots</name>
-            <url>http://repository.apache.org/content/groups/snapshots-group/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.tomcat.maven</groupId>
-                    <artifactId>tomcat6-maven-plugin</artifactId>
-                    <version>2.0-beta-1</version>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.0-SNAPSHOT</version>
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>     
-            <!--plugin>
+        <plugins>
+            <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat6-maven-plugin</artifactId>                              
+                <artifactId>tomcat7-maven-plugin</artifactId>                
+                <configuration>
+                    <url>http://localhost:8085/manager/html</url>
+                    <username>admin</username>
+                    <password>password</password>
+                </configuration>
                 <executions>
                     <execution>
-                        <goals>
-                            <goal>redeploy</goal>
-                        </goals>
+                        <id>classical</id>
                         <phase>install</phase>
-                        <configuration>
-                            <server>tomcat</server>
-                            <url>http://localhost:8085/manager</url>
-                            <server>tomcat</server>
-                        </configuration>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
                     </execution>
                 </executions>
-            </plugin--> 
+            </plugin>
         </plugins>
-    </build>
+    </build>  
     
-    <profiles>
-        <profile>
-            <id>virgo</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>net.flybyte.virgo</groupId>
-                        <artifactId>virgo-maven-plugin</artifactId>
-                        <version>1.0.1-SNAPSHOT</version>
-                        <executions>
-                            <execution>
-                                <id>deploy</id>
-                                <goals>
-                                    <goal>deploy</goal>
-                                </goals>
-                                <phase>install</phase>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <virgoRoot>C:/Program Files/virgo-tomcat-server-3.0.2.RELEASE</virgoRoot>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
+    <repositories>
+        <repository>
+            <id>xeneo-snap</id>
+            <url>http://www.wi.fh-kufstein.ac.at:40700/nexus/content/repositories/xeneo/</url>
+        </repository>
+    </repositories>
 </project>

@@ -1,13 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"        
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:c="http://www.springframework.org/schema/context"
-        xmlns:osgi="http://www.springframework.org/schema/osgi"        
-	xsi:schemaLocation="http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"        
+       xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
                             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <c:annotation-config/>
-    <c:component-scan base-package="org.xeneo.web" />
-   
+    <c:component-scan base-package="org.xeneo" />
+    <c:property-placeholder location="classpath:config.properties" />
+    
+    <import resource="security-context.xml" />
+    
+    <!-- Task Scheduler -->
+    <task:scheduler id="scheduler" pool-size="10"/>
+        
+    <!-- Database Configuration -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}${jdbc.dbname}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean> 
+            
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    
+    <!-- Domain Objects -->
+    <bean id="activityManager" class="org.xeneo.db.JdbcActivityManager">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+       
+    <!-- Plugin Management -->
+    <bean id="pluginInstantiator" class="org.xeneo.plugin.PluginInstantiator" />
+    
+    <bean id="pluginRepository" class="org.xeneo.db.JdbcPluginRepository">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+    
+    <bean id="configurator" class="org.xeneo.plugin.PluginConfiguratorImpl" init-method="init">
+        <property name="activityPluginRuntime" ref="activityRuntime" />
+        <property name="pluginRepository" ref="pluginRepository" />
+        <property name="plugins">
+            <list>
+                <bean id="dropboxPlugin" class="org.xeneo.core.plugin.PluginConfiguration">
+                    <property name="title" value="Dropbox Plugin" />
+                    <property name="description" value="Plugin responsible for retrieving Dropbox Activities." />
+                    <property name="pluginClass" value="at.markmei.xeneo.plugin.DropboxActivityPlugin" />
+                    <property name="pluginType" value="ACTIVITY_PLUGIN" />
+                    <property name="pluginURI" value="http://plugin.xeneo.org/dropbox-activity-plugin" />
+                    <property name="properties">
+                        <array>
+                            <bean id="p1" class="org.xeneo.core.plugin.PluginProperty">
+                                <property name="name" value="feed-url" />
+                                <property name="type" value="URI" />
+                            </bean>
+                        </array>
+                    </property>
+                </bean>
+                <bean id="deliciousPlugin" class="org.xeneo.core.plugin.PluginConfiguration">
+                    <property name="title" value="Delicious Plugin" />
+                    <property name="description" value="Plugin responsible for retrieving Delicious Activities." />
+                    <property name="pluginClass" value="org.xeneo.plugin.delicious.DeliciousActivityPlugin" />
+                    <property name="pluginType" value="ACTIVITY_PLUGIN" />
+                    <property name="pluginURI" value="http://plugin.xeneo.org/delicious-activity-plugin" />
+                    <property name="properties">
+                        <array>
+                            <bean id="p2" class="org.xeneo.core.plugin.PluginProperty">
+                                <property name="name" value="user" />
+                                <property name="type" value="TEXT" />
+                            </bean>
+                            <bean id="p3" class="org.xeneo.core.plugin.PluginProperty">
+                                <property name="name" value="password" />
+                                <property name="type" value="TEXT" />
+                            </bean>
+                        </array>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="activityRuntime" class="org.xeneo.plugin.ActivityPluginRuntimeImpl">
+        <property name="activityManager" ref="activityManager" />
+        <property name="pluginInstantiator" ref="pluginInstantiator" />
+        <property name="taskScheduler" ref="scheduler" />
+    </bean>       
 </beans>

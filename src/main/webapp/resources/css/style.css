@@ -1,0 +1,571 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	background: none;
+	border: 0px;
+}
+
+html {
+	background: url("#{resource['img:body.jpg']}") 0px 0px repeat #787b82;
+	height: 100%;
+}
+
+body {
+	color: #666666;
+	font-family: Tahoma,Verdana,Helvetica,Geneva,Arial,sans-serif;
+	font-size: 12px;
+	margin: 15px auto;
+	width: 980px;
+}
+
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {
+	display: block;
+}
+
+mark, rp, rt, ruby, summary, time {
+	display: inline;
+}
+
+div, p, h1, h2, h3, h4, h5, h6 {
+	font-family: Tahoma,Verdana,Helvetica,Geneva,Arial,sans-serif;
+	font-size: 12px;
+	text-align: justify;
+}
+
+.breaker {
+	clear: both;
+	overflow: hidden;
+}
+
+ul {
+	list-style: none;	
+}
+
+/* Forms */
+input, textarea, select {
+	background: #ffffff;
+	border: 1px solid #aaaaaa;
+	color: #666666;
+	font-family:Tahoma,Verdana,Helvetica,Geneva,Arial,sans-serif;
+	font-size: 12px;
+	margin: 5px 5px 0px 0px;
+	padding: 5px;
+}
+
+input.form {
+	margin: 5px 5px 10px 0px;
+	width: 378px;
+}
+
+textarea.form {
+	height: 100px;
+	margin: 5px 5px 10px 0px;
+	width: 378px;
+}
+
+input.checkbox, input.radio {
+	margin: 0px;
+	padding: 0px;
+	background: none;
+	border: 0px;
+}
+
+input.button {
+	background: #666666;
+	border: 1px solid #666666;
+	color: #ffffff;
+	cursor:pointer;
+	margin:0px 5px 0px 0px;
+}
+
+label {
+	clear: both;
+	cursor: pointer;
+}
+
+/* Links */
+a {
+	border-bottom: 1px dotted #aaaaaa;
+	color: #5e4587;
+	text-decoration: none;
+}
+
+a:hover {
+	border-bottom: 1px dotted #333333;
+	color: #333333;
+	text-decoration: none;
+}
+
+a:link, a:hover, a:active, a:visited, a:focus {
+	outline:none;
+}
+
+/* Headlines */
+h1 {
+	color: #5e4587;
+	font-size: 16px;
+	font-weight: normal;
+	margin: 0px 0px 5px 0px;
+}
+
+h2 {
+	color: #5e4587;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+/* Paragraphs */
+p {
+	margin: 0px 0px 10px 0px;
+}
+
+p.about {
+	color: #999999;
+	font-size: 11px;
+	margin: -5px 0px 5px 0px;
+}
+
+p.last {
+	margin: 0px;
+}
+
+/* Messages */
+.success, .notice, .error {
+	margin:10px auto;
+	padding:5px;
+	font-weight:bold;
+}
+.success {
+	background:#d3f3c0;
+	border:1px solid #a5d985;
+	color:#557143;
+}
+
+.notice {
+	background:#fff3c5;
+	border:1px solid #ffe075;
+	color:#937f38;
+}
+
+.error {
+	background:#ffe3e2;
+	border:1px solid #efb1af;
+	color:#cc0000;
+}
+
+.success a, .notice a, .error a {
+	color:#666666;
+}
+
+/* ClearFix */
+.cf:before, .cf:after {
+	content: '';
+	display: table;
+}
+
+.cf:after {
+	clear: both;
+}
+
+.cf {
+	zoom: 1;
+}
+
+/* Header */
+#header-wrap {
+	clear: both;
+	height: 50px;
+	width: 980px;
+}
+
+#header-left {
+	background: #cccccc;
+	border-radius: 5px 5px 0px 0px;
+	float: left;
+	height: 30px;
+	padding: 10px;
+	width: 620px;
+}
+
+#services {
+	float: left;
+	width: 520px;	
+}
+
+#services ul li {
+	background-image: url("#{resource['img:services-sprite.png']}");
+	cursor: pointer;
+	display: block;
+	float: left;
+	height: 32px;
+	margin: 0px 10px 0px 0px;
+	text-indent: -9999px;
+	width: 32px;
+}
+
+#services ul li:last-child {
+	margin: 0px;	
+}
+
+#services-home {
+	background-position: 0px 0px;
+}
+
+#services-github {
+	background-position: -32px 0px;
+}
+
+#services-dropbox {
+	background-position: -64px 0px;
+}
+
+#services-evernote {
+	background-position: -96px 0px;
+}
+
+#services-google-calendar {
+	background-position: -128px 0px;
+}
+
+#cockpit {
+	float: right;
+	width: 100px;	
+}
+
+#cockpit ul {
+	float: right;
+}
+
+#cockpit ul li {
+	background-image: url("#{resource['img:cockpit-sprite.png']}");
+	cursor: pointer;
+	display: block;
+	float: left;
+	height: 20px;
+	margin: 5px 0px 5px 5px;
+	text-indent: -9999px;
+	width: 20px;
+}
+
+#cockpit-add {
+	background-position: 0px 0px;
+}
+
+#cockpit-filter {
+	background-position: -20px 0px;
+}
+
+#header-right {
+	float: right;
+	height: 50px;
+	width: 340px;
+}
+
+#options {
+	float: left;
+	margin: 0px 0px 0px 8px;
+	width: 200px;
+}
+
+#options ul li {
+	color: #ffffff;
+	cursor: pointer;
+	display:block;
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	padding: 0px 0px 2px 0px;
+	text-shadow: 0px 1px 1px #000000;
+	width: 100px;
+}
+
+#options ul li:hover {
+	color: #cccccc;
+}
+
+#options ul li:before {
+	background-image: url("#{resource['img:options-sprite.png']}");
+	content: '';
+	float: left;
+	display: block;
+	height: 20px;
+	margin: 0px 3px 0px 0px;
+	width: 20px;
+}
+
+#options-home:before {
+	background-position: 0px 0px;
+}
+
+#options-account:before {
+	background-position: -20px 0px;
+}
+
+#options-task-space:before {
+	background-position: -40px 0px;
+}
+
+#options-case-types:before {
+	background-position: -60px 0px;
+}
+
+#options-home:hover:before {
+	background-position: 0px -20px;
+}
+
+#options-account:hover:before {
+	background-position: -20px -20px;
+}
+
+#options-task-space:hover:before {
+	background-position: -40px -20px;
+}
+
+#options-case-types:hover:before {
+	background-position: -60px -20px;
+}
+
+#me {
+	float: left;
+	line-height: 14px;
+	width: 80px;
+}
+
+#me .first-name, #me .last-name, #me .organisation {
+	display: block;	
+	text-align: right;
+	text-shadow: 0px 1px 1px #000000;
+}
+
+#me .first-name, #me .last-name {
+	color: #ffffff;
+}
+
+#me .organisation {
+	color: #cccccc;
+}
+
+#picture {
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+	display: block;
+	float: left;
+	height: 45px;
+	margin: 0px 0px 0px 7px;
+	width: 45px;
+}
+
+/* Content */
+#wrap {
+	background: url("#{resource['img:faux-columns.png']}") 0px 0px repeat-y #ffffff;
+	border-radius: 0px 0px 5px 5px;
+	clear: both;
+	width: 980px;
+}
+
+#left {
+	background: url("#{resource['img:corner.png']}") 0px 0px no-repeat transparent;
+	float: left;
+	min-height: 300px;
+	padding: 10px;
+	width: 620px;
+}
+
+#right {
+	float: right;
+	min-height: 300px;
+	padding: 10px;
+	width: 320px;
+}
+
+/* Steps */
+.step {
+	background: #dddddd;
+	float: left;
+	height: 30px;
+	line-height: 28px;
+	padding: 0px 3px 0px 23px;
+	position: relative;
+}
+
+.step:first-child {
+	border-radius: 3px 0px 0px 3px;
+	padding: 0px 0px 0px 8px;
+}
+
+.step:before {
+	border-top: 15px solid transparent;
+	border-bottom: 15px solid transparent;
+	border-left: 15px solid #dddddd;
+	content: '';
+	display: block;
+	height: 0px;
+	left: 100%;
+	position: absolute;
+	width: 0px;
+	z-index: 10;
+}
+
+.step.prev, .step.next {
+	background: #aaaaaa;
+	color: #ffffff;
+}
+
+.step.prev:before, .step.next:before {
+	border-left: 15px solid #aaaaaa;	
+}
+
+.step.current {
+	background: #666666;
+	color: #ffffff;
+}
+
+.step.current:before {
+	border-left: 15px solid #666666;
+}
+
+/* Activities */
+.activity {
+	border-bottom: 1px solid #cccccc;
+	clear: both;
+	margin: 0px 0px 10px 0px;
+	padding: 0px 0px 10px 0px;
+}
+
+.activity:last-of-type {
+	border-bottom: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.activity .icon {
+	background-image: url("#{resource['img:services-sprite.png']}");
+	float: left;
+	height: 32px;
+	width: 32px;
+}
+
+.activity.dropbox .icon {
+	float: left;
+	height: 32px;
+	margin: 0px 5px 0px 0px;
+	width: 32px;
+}
+
+.activity.github .icon {
+	background-position: -32px 0px;
+}
+
+.activity.dropbox .icon {
+	background-position: -64px 0px;
+}
+
+.activity.evernote .icon {
+	background-position: -96px 0px;
+}
+
+.activity.google-calendar .icon {
+	background-position: -128px 0px;
+}
+
+.activity .picture {
+	float: left;
+	height: 32px;
+	width: 32px;
+}
+
+.activity .picture img {
+	display: block;
+	height: 32px;
+	width: 32px;
+}
+
+.activity .content {
+	float: left;
+	margin: 0px 0px 0px 5px;
+	width: 396px;
+}
+
+.activity .content .name {
+	color: #333333;
+	display: block;
+}
+
+.activity .content p:last-of-type {
+	margin: 0px;
+}
+
+.activity .content time {
+	color: #aaaaaa;
+	display: block;
+	font-size: 10px;
+}
+
+/* Footer */
+footer {
+	color: #ffffff;
+	font-size: 10px;
+	margin: 5px 0px 0px 0px;
+	text-align: center;
+	text-shadow: 0px 1px 1px #000000;
+}
+
+footer img {
+	vertical-align: text-bottom;
+}
+
+/* Box */
+#black {
+	background: url("#{resource['img:black.png']}") 0px 0px repeat transparent;
+	display: none;
+	height: 100%;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	z-index: 123;
+}
+
+#box {
+	background: #ffffff;
+	border: 1px solid #333333;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+	display: none;
+	left: 100px;
+	padding: 10px;
+	position: absolute;
+	top: 100px;
+	width: 300px;
+	z-index: 456;
+}
+
+#box:before {
+	background: url("#{resource['img:arrow.png']}") 0px 0px no-repeat transparent;
+	content: '';
+	display: block;
+	height: 7px;
+	left: 50%;
+	margin: -7px 0px 0px -7px;
+	position: absolute;
+	top: 0px;
+	width: 13px;
+}
+
+.box {
+	display: none;	
+}
+
+.option {
+	background: #ffffff;
+	border-bottom: 1px solid #cccccc;
+	cursor: pointer;
+	padding: 3px 5px;
+}
+
+.option:hover {
+	background: #dddddd;
+}
+
+.option:last-child {
+	border-bottom: 0px;
+}

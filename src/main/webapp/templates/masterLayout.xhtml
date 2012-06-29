@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>        
+        <h:outputScript library="js" name="html5.js" />
+        <!--h:outputScript library="js" name="jquery.js" /-->
+        <h:outputScript library="js" name="scripts.js" />
+        <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+
+    <h:body>
+
+        <div id="header-wrap" class="cf">
+            <header id="header-left">
+                <ui:insert name="header-left">Header Left</ui:insert>	
+            </header>
+            <header id="header-right">
+                
+                <ui:insert name="header-right">Header Right</ui:insert>          
+
+                <ui:include src="/includes/userDepiction.xhtml" />
+                
+            </header>
+        </div>
+        <div id="wrap" class="cf">
+            <section id="left">
+
+                <ui:insert name="left">Placeholder Left</ui:insert>	
+
+                <!--
+                <div class="activity github cf">
+                    <div class="icon"></div>
+                    <div class="picture"><img src="img/placeholder.png" alt="" /></div>
+                    <div class="content">
+                        <span class="name">Rupi Reindeer</span>
+                        <p>First Commit</p>
+                        <time datetime="2011-09-28T17:25:21+02:00">Mi 28.09.2011, 17:25 Uhr</time>
+                    </div>
+                </div>	
+                -->
+            </section>
+            <section id="right">
+                <ui:insert name="right">Placeholder Right</ui:insert>
+            </section>
+        </div>
+
+        <footer>
+            <ui:insert name="footer">Footer</ui:insert>
+        </footer>      
+
+    </h:body>
+</html>

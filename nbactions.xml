@@ -7,4 +7,25 @@
                 <goal>tomcat:redeploy</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-run in tomcat</actionName>
+            <displayName>run in tomcat</displayName>
+            <goals>
+                <goal>tomcat:run</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-tomcat shutdown</actionName>
+            <displayName>tomcat shutdown</displayName>
+            <goals>
+                <goal>tomcat:shutdown</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-sql execute</actionName>
+            <displayName>sql execute</displayName>
+            <goals>
+                <goal>sql:execute</goal>
+            </goals>
+        </action>
     </actions>
