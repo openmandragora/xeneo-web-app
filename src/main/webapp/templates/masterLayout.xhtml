@@ -12,44 +12,27 @@
     </h:head>
 
     <h:body>
-
-        <div id="header-wrap" class="cf">
-            <header id="header-left">
-                <ui:insert name="header-left">Header Left</ui:insert>	
-            </header>
-            <header id="header-right">
-                
-                <ui:insert name="header-right">Header Right</ui:insert>          
-
-                <ui:include src="/includes/userDepiction.xhtml" />
-                
-            </header>
+        
+        <div id="master">
+        <div id="menue">
+            
+                <ui:insert name="menue.insert"></ui:insert>          
+        
         </div>
-        <div id="wrap" class="cf">
-            <section id="left">
+           
+        <div id="masterbottom">
+        <div id="wrap">
+            
+                 <ui:insert name="wrap.insert"></ui:insert>
 
-                <ui:insert name="left">Placeholder Left</ui:insert>	
-
-                <!--
-                <div class="activity github cf">
-                    <div class="icon"></div>
-                    <div class="picture"><img src="img/placeholder.png" alt="" /></div>
-                    <div class="content">
-                        <span class="name">Rupi Reindeer</span>
-                        <p>First Commit</p>
-                        <time datetime="2011-09-28T17:25:21+02:00">Mi 28.09.2011, 17:25 Uhr</time>
-                    </div>
-                </div>	
-                -->
-            </section>
-            <section id="right">
-                <ui:insert name="right">Placeholder Right</ui:insert>
-            </section>
+        </div> 
+        <div id="rightbar">
+            
+                <ui:insert name="rightbar.insert"></ui:insert>          
+        
         </div>
-
-        <footer>
-            <ui:insert name="footer">Footer</ui:insert>
-        </footer>      
-
+        </div>
+        </div>  
+            
     </h:body>
 </html>

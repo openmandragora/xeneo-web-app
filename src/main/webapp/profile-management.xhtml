@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>XENEO - Profile Management</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/masterLayout.xhtml">            
+
+            <ui:define name="menue.insert">
+                <h:form>
+                    <p:menubar>  
+                        <p:submenu label="Case Management" icon="ui-icon-document">    
+                            <p:menuitem value="Add Case Type" action="#{user.toCaseTypeManagement()}"/>   
+                            <p:menuitem value="Add Case" action="#{user.toCaseManagement()}" />  
+                        </p:submenu>
+                        <p:submenu label="Options">
+                            <p:menuitem value="Change Account Data" action="#{user.toProfileManaged()}"/>
+                            
+                            <p:menuitem value="Add User" action="#{usert.toadduser()}"/>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+            </ui:define>
+            <ui:define name="profile.insert">
+                <p class="pro_font">Max Mustermann</p>
+                <h:graphicImage value="resources/img/placeholder.png" id="profilepic"/>
+            </ui:define>
+
+            <ui:define name="wrap.insert">
+                <h:form>
+
+                    <p:panel header="Change Account Data" id="panel">
+                          
+                        <p:messages showDetail="true" autoUpdate="true"/>
+                     
+                        <p:fieldset legend="User Data" styleClass="fieldset1">
+                            <h:panelGrid columns="2" styleClass="panelclass" cellpadding="5">
+
+                                <h:outputText class="labels" value="Firstname"/>
+                                <p:inputText id="FN" value="#{user.firstName}" required="true"/>
+
+                                <h:outputLabel class="labels" value="Lastname: " for="LN"/>
+                                <p:inputText id="LN" value="#{user.lastName}" required="true"/>
+
+                                <h:outputLabel class="labels" value="E-Mail Adress: " for="EA"/>
+                                <p:inputText id="EA" value="#{user.email}" required="true"/>
+
+                            </h:panelGrid>
+                        </p:fieldset>
+
+
+                        <p:fieldset legend="Change Password" styleClass="fieldset">
+                            <h:panelGrid columns="2" styleClass="panelclass" cellpadding="5">
+
+                                <h:outputLabel class="labels" value="Old Password: " for="OldPW"/>
+                                <p:password id="OldPW" value="#{user.password}" />
+
+
+                                <h:outputLabel class="labels" value="New Password 1: " for="NewPW"/> 
+                                <p:password id="NewPW"  value="#{user.newpw}" />
+
+
+                                <h:outputLabel class="labels" value="Confirmation New Password: " for="NewPW2"/>
+                                <p:password id="NewPW2" value="#{user.newpw2}" />
+
+                            </h:panelGrid>
+                        </p:fieldset>
+                        
+                      
+                        
+                            <p:commandButton type="submit" action="#{user.savepassword}" value="Save all" styleClass="buttons1"/>
+                            <p:commandButton type="reset" value="Reset" styleClass="buttons"/>
+                        
+                        
+                   </p:panel>
+                   
+                </h:form>  
+            </ui:define>
+
+            <ui:define name="rightbar.insert">
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

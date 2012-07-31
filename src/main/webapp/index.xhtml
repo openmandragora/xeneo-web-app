@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -7,34 +6,38 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>XENEO - Home</title>
+        <title>XENEO - Profile Management</title>
     </h:head>
     <h:body>
         <ui:composition template="templates/masterLayout.xhtml">            
-            <ui:define name="left">
-                Leftist
+            
+            <ui:define name="menue.insert">
+                <h:form>
+                <p:menubar>  
+                    <p:submenu label="Case Management" icon="ui-icon-document">    
+                        <p:menuitem value="Add Case Type" action="#{index.toCaseTypeManagement()}"/>   
+                        <p:menuitem value="Add Case" action="#{index.toCaseManagement()}" />  
+                    </p:submenu>
+                    <p:submenu label="Options">
+                        <p:menuitem value="Change Account Data" action="#{index.toProfileManaged()}"/>
+                        
+                        <p:menuitem value="Add User" action="#{index.toadduser()}"/>
+                    </p:submenu>
+                </p:menubar>
+                </h:form>
             </ui:define>
-            <ui:define name="right">
-                <div>
-                    <h3>Case Management</h3>
-                    <a href="" onclick="createDialog.show()">Create New case Link</a>
-                    <p:commandButton onclick="createDialog.show()" value="Create new Case" type="button" />                    
-                </div>                
+            <ui:define name="profile.insert">
+                <p class="pro_font">Max Mustermann</p>
+                <h:graphicImage value="resources/img/placeholder.png" id="profilepic"/>
+            </ui:define>
+   
+            <ui:define name="wrap.insert">
                 
-                <p:dialog id="createDialog" header="Create new Case" widgetVar="createDialog" modal="true">  
-                    <h:outputLabel for="title" value="Title" />
-                    <h:inputText id="title" />
-                    <h:outputLabel for="description" value="Description" />
-                    <h:inputTextarea id="description"  />
-                    <h:outputLabel for="caseType" value="Case Type" />
-                    <h:selectOneListbox id="caseType">
-                        <f:selectItem id="item1" itemLabel="News" itemValue="1" />
-                        <f:selectItem id="item2" itemLabel="Sports" itemValue="2" />
-                    </h:selectOneListbox>
-                    <h:commandButton value="Create Case" />
-                </p:dialog> 
+            </ui:define>
+                
+            <ui:define name="rightbar.insert">
+                                       
             </ui:define>
         </ui:composition>
     </h:body>
 </html>
-

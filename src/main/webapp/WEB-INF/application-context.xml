@@ -32,6 +32,10 @@
     <bean id="activityManager" class="org.xeneo.db.JdbcActivityManager">
         <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
+    
+    <bean id="caseEngine" class="org.xeneo.db.JdbcCaseEngine">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean> 
        
     <!-- Plugin Management -->
     <bean id="pluginInstantiator" class="org.xeneo.plugin.PluginInstantiator" />

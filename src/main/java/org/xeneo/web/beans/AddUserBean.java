@@ -38,19 +38,19 @@ import org.xeneo.core.services.UserServices;
  * @author Stefan Huber
  */
 
-@Component("user")
+@Component("adduser")
 @Scope("request")
-public class UserManagementBean {
+
+public class AddUserBean {
     
   
     
-   private  String firstname = "Alex";
-   private  String lastname = "Ries";
-   private String email ="alex_ries@gmx.de";
+   private  String firstname;
+   private  String lastname;
+   private String email;
    private String password;
    private String newpw;
    private String newpw2;
-   private String TestPasswort ="JSF";
    private String fncolor;
 
 
@@ -121,7 +121,6 @@ public class UserManagementBean {
     
     public String savepassword(){
   
-   TestPasswort="JSF";
        
    FacesContext context = FacesContext.getCurrentInstance();
 
@@ -136,16 +135,11 @@ public class UserManagementBean {
            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Your password should be a minimum of 6 characters!","" )); 
    }
    
-   if(!(password.equals(TestPasswort))&& !(password.equals(""))){
-      
-         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Wrong password!","" ));   
-           
-   }
    
    return null;
    }
    
-       public String toProfileManaged(){
+     public String toProfileManaged(){
    
     
         
@@ -163,6 +157,7 @@ public class UserManagementBean {
     
         return "case-management";
     }
+    
     public String toadduser(){
     
         return "add-user";
