@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.xeneo.core.security.User;
-import org.xeneo.core.services.UserServices;
+import org.xeneo.core.security.UserService;
 
 /**
  *
@@ -31,7 +31,7 @@ import org.xeneo.core.services.UserServices;
 public class UserManagementBean {
     
     @Autowired
-    private UserServices us;
+    private UserService us;
     
     private User user;
     

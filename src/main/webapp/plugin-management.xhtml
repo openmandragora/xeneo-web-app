@@ -15,7 +15,13 @@
                 <h1>Plugin Management</h1>
                 <p:accordionPanel multiple="true" value="#{apm.plugins}" var="plugin">  
                     <p:tab title="#{plugin.title}">    
-                        <h:form>   
+                        <h:form>                               
+                            <c:if test="#{plugin.needsAuthentication}">
+                                <ui:include src="/includes/authentication.xhtml">
+                                    <ui:param name="authtype" value="#{plugin.authType}" />
+                                </ui:include>
+                            </c:if>
+                            
                             <ui:repeat value="#{plugin.properties}" var="property" varStatus="stat">                                
                                 <h:outputLabel for="property" value="#{property.name}" />                                
                                 <h:inputText id="property" value="#{property.value}" />

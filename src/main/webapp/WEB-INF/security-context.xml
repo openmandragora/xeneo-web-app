@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"        
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xmlns:beans="http://www.springframework.org/schema/beans"             
+             xmlns:beans="http://www.springframework.org/schema/beans"
              xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                                 http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+                                 http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+                                 ">
         
     <http>
         <!-- intercept-url pattern="/login.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" /-->
         <intercept-url pattern="/**" access="ROLE_USER" />
         <form-login default-target-url="/index.jsf" />
+        
         <logout />
     </http>
-
+  
     <authentication-manager>                 
         <authentication-provider user-service-ref="userDetailsService" />
     </authentication-manager>  
@@ -20,11 +22,10 @@
         <beans:property name="userDetailsService" ref="userDetailsService" />
     </beans:bean>       
     
-    <beans:bean id="userDetailsService" class="org.xeneo.db.security.JdbcUserDetailsService">
-        <beans:property name="dataSource" ref="dataSource" />
-    </beans:bean>
-    
-    <beans:bean id="userService" class="org.xeneo.db.services.JdbcUserServices">
+    <beans:bean id="userDetailsService" class="org.xeneo.db.security.JdbcUserManager">
         <beans:property name="jdbcTemplate" ref="jdbcTemplate" />
     </beans:bean>
+    
+    <beans:bean id="userService" class="org.xeneo.db.security.JdbcUserService" />
+        
 </beans:beans>
