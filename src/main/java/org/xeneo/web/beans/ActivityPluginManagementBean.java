@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.xeneo.core.plugin.*;
-import org.xeneo.core.services.UserServices;
+import org.xeneo.core.security.UserService;
 
 /**
  * @author Stefan Huber
@@ -26,7 +26,7 @@ public class ActivityPluginManagementBean {
     private PluginConfigurator pcm;
     
     @Autowired
-    private UserServices us;
+    private UserService us;
     
     private List<PluginConfiguration> plugs;
 

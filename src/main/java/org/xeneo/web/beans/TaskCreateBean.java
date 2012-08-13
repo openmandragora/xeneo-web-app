@@ -15,25 +15,17 @@
  */
 package org.xeneo.web.beans;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.xeneo.core.task.Case;
-import org.xeneo.core.task.CaseEngine;
 
 /**
  *
  * @author XENEO
  */
-
 @Component("taskcreatebean")
 @Scope("request")
 public class TaskCreateBean {
-    
- 
-    
+
     String titel;
     String description;
 
@@ -52,11 +44,10 @@ public class TaskCreateBean {
     public void setTitel(String titel) {
         this.titel = titel;
     }
-    
-    public String createTask(){
-    
-       
+
+    public String createTask() {
+
+
         return "/";
     }
 }
-   

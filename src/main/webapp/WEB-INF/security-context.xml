@@ -20,11 +20,10 @@
         <beans:property name="userDetailsService" ref="userDetailsService" />
     </beans:bean>       
     
-    <beans:bean id="userDetailsService" class="org.xeneo.db.security.JdbcUserDetailsService">
-        <beans:property name="dataSource" ref="dataSource" />
-    </beans:bean>
-    
-    <beans:bean id="userService" class="org.xeneo.db.services.JdbcUserServices">
+    <beans:bean id="userDetailsService" class="org.xeneo.db.security.JdbcUserManager">
         <beans:property name="jdbcTemplate" ref="jdbcTemplate" />
     </beans:bean>
+    
+    <beans:bean id="userService" class="org.xeneo.db.security.JdbcUserService" />
+    
 </beans:beans>

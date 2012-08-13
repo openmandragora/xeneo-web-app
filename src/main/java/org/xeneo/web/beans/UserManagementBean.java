@@ -15,44 +15,27 @@
  */
 package org.xeneo.web.beans;
 
-import java.util.Iterator;
-import java.util.logging.Logger;
-import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseStream;
-import javax.faces.context.ResponseWriter;
-import javax.faces.render.RenderKit;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.xeneo.core.security.User;
-import org.xeneo.core.services.UserServices;
 
 /**
  *
  * @author Stefan Huber
  */
-
 @Component("user")
 @Scope("request")
 public class UserManagementBean {
-    
-  
-    
-   private  String firstname = "Alex";
-   private  String lastname = "Ries";
-   private String email ="alex_ries@gmx.de";
-   private String password;
-   private String newpw;
-   private String newpw2;
-   private String TestPasswort ="JSF";
-   private String fncolor;
 
+    private String firstname = "Alex";
+    private String lastname = "Ries";
+    private String email = "alex_ries@gmx.de";
+    private String password;
+    private String newpw;
+    private String newpw2;
+    private String TestPasswort = "JSF";
+    private String fncolor;
 
     public void setFirstName(String firstname) {
         this.firstname = firstname;
@@ -77,7 +60,7 @@ public class UserManagementBean {
     public void setNewpw2(String newpw2) {
         this.newpw2 = newpw2;
     }
-    
+
     public String getFirstName() {
         return firstname;
     }
@@ -105,68 +88,65 @@ public class UserManagementBean {
     public String getFncolor() {
         return fncolor;
     }
-    
-   
-    public String saveuserdata(){
 
-       if(lastname.equals("") && firstname.equals("") && email.equals("")){
-   
-       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"All fields are required!",""));
-  
-       }
-       
-       return null;
-       
-    }
-    
-    public String savepassword(){
-  
-   TestPasswort="JSF";
-       
-   FacesContext context = FacesContext.getCurrentInstance();
+    public String saveuserdata() {
 
-   
-   if(!(newpw.equals(newpw2))&& !(newpw2.equals(""))&& !(newpw.equals("")))
-       {  
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"No password match!",""));  
-   }
-   
-   if(newpw.length()<7 && !(newpw.equals(""))){
-   
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Your password should be a minimum of 6 characters!","" )); 
-   }
-   
-   if(!(password.equals(TestPasswort))&& !(password.equals(""))){
-      
-         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Wrong password!","" ));   
-           
-   }
-   
-   return null;
-   }
-   
-       public String toProfileManaged(){
-   
-    
-        
-    return "profile-management";
+        if (lastname.equals("") && firstname.equals("") && email.equals("")) {
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "All fields are required!", ""));
+
+        }
+
+        return null;
+
     }
-    
-    public String toCaseTypeManagement(){
-   
-    
-        
-    return "casetype-management";
+
+    public String savepassword() {
+
+        TestPasswort = "JSF";
+
+        FacesContext context = FacesContext.getCurrentInstance();
+
+
+        if (!(newpw.equals(newpw2)) && !(newpw2.equals("")) && !(newpw.equals(""))) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "No password match!", ""));
+        }
+
+        if (newpw.length() < 7 && !(newpw.equals(""))) {
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Your password should be a minimum of 6 characters!", ""));
+        }
+
+        if (!(password.equals(TestPasswort)) && !(password.equals(""))) {
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong password!", ""));
+
+        }
+
+        return null;
     }
-    
-    public String toCaseManagement(){
-    
+
+    public String toProfileManaged() {
+
+
+
+        return "profile-management";
+    }
+
+    public String toCaseTypeManagement() {
+
+
+
+        return "casetype-management";
+    }
+
+    public String toCaseManagement() {
+
         return "case-management";
     }
-    public String toadduser(){
-    
+
+    public String toadduser() {
+
         return "add-user";
     }
-} 
-   
-   
+}

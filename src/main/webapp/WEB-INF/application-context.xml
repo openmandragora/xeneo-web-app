@@ -13,6 +13,16 @@
     
     <import resource="security-context.xml" />
     
+    <!-- Message Source -->
+    <bean id="messages" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>objecttypes</value>
+                <value>actions</value>            
+            </list>
+        </property>
+    </bean>
+    
     <!-- Task Scheduler -->
     <task:scheduler id="scheduler" pool-size="10"/>
         
@@ -25,17 +35,16 @@
     </bean> 
             
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSource" />
     </bean>
     
     <!-- Domain Objects -->
-    <bean id="activityManager" class="org.xeneo.db.JdbcActivityManager">
+    <bean id="activityRepository" class="org.xeneo.db.JdbcActivityRepository">
         <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     
-    <bean id="caseEngine" class="org.xeneo.db.JdbcCaseEngine">
-        <property name="jdbcTemplate" ref="jdbcTemplate" />
-    </bean> 
+    <bean id="caseManager" class="org.xeneo.db.JdbcCaseManager" />
+
        
     <!-- Plugin Management -->
     <bean id="pluginInstantiator" class="org.xeneo.plugin.PluginInstantiator" />
@@ -48,23 +57,8 @@
         <property name="activityPluginRuntime" ref="activityRuntime" />
         <property name="pluginRepository" ref="pluginRepository" />
         <property name="plugins">
-            <list>
-                <bean id="dropboxPlugin" class="org.xeneo.core.plugin.PluginConfiguration">
-                    <property name="title" value="Dropbox Plugin" />
-                    <property name="description" value="Plugin responsible for retrieving Dropbox Activities." />
-                    <property name="pluginClass" value="at.markmei.xeneo.plugin.DropboxActivityPlugin" />
-                    <property name="pluginType" value="ACTIVITY_PLUGIN" />
-                    <property name="pluginURI" value="http://plugin.xeneo.org/dropbox-activity-plugin" />
-                    <property name="properties">
-                        <array>
-                            <bean id="p1" class="org.xeneo.core.plugin.PluginProperty">
-                                <property name="name" value="feed-url" />
-                                <property name="type" value="URI" />
-                            </bean>
-                        </array>
-                    </property>
-                </bean>
-                <bean id="deliciousPlugin" class="org.xeneo.core.plugin.PluginConfiguration">
+            <list>                
+                <bean class="org.xeneo.core.plugin.PluginConfiguration">
                     <property name="title" value="Delicious Plugin" />
                     <property name="description" value="Plugin responsible for retrieving Delicious Activities." />
                     <property name="pluginClass" value="org.xeneo.plugin.delicious.DeliciousActivityPlugin" />
@@ -72,13 +66,28 @@
                     <property name="pluginURI" value="http://plugin.xeneo.org/delicious-activity-plugin" />
                     <property name="properties">
                         <array>
-                            <bean id="p2" class="org.xeneo.core.plugin.PluginProperty">
+                            <bean class="org.xeneo.core.plugin.PluginProperty">
                                 <property name="name" value="user" />
                                 <property name="type" value="TEXT" />
                             </bean>
-                            <bean id="p3" class="org.xeneo.core.plugin.PluginProperty">
+                            <bean class="org.xeneo.core.plugin.PluginProperty">
                                 <property name="name" value="password" />
                                 <property name="type" value="TEXT" />
+                            </bean>
+                            <bean class="org.xeneo.core.plugin.PluginProperty">
+                                <property name="name" value="providerURI" />
+                                <property name="type" value="FIXED_HIDDEN" />
+                                <property name="value" value="http://delicious.com" />
+                            </bean>
+                            <bean class="org.xeneo.core.plugin.PluginProperty">
+                                <property name="name" value="providerName" />
+                                <property name="type" value="FIXED_HIDDEN" />
+                                <property name="value" value="Delicious Bookmarking Service" />
+                            </bean>
+                            <bean class="org.xeneo.core.plugin.PluginProperty">
+                                <property name="name" value="providerTypeURI" />
+                                <property name="type" value="FIXED_HIDDEN" />
+                                <property name="value" value="http://xeneo.org/services/bookmarking" />
                             </bean>
                         </array>
                     </property>
@@ -88,8 +97,12 @@
     </bean>
     
     <bean id="activityRuntime" class="org.xeneo.plugin.ActivityPluginRuntimeImpl">
-        <property name="activityManager" ref="activityManager" />
+        <property name="activityRepository" ref="activityRepository" />
         <property name="pluginInstantiator" ref="pluginInstantiator" />
         <property name="taskScheduler" ref="scheduler" />
     </bean>       
+    
+    <bean id="uriGenerator" class="org.xeneo.db.services.URIGenerator" factory-method="getInstance">
+        <property name="baseURI" value="http://www.xeneo.org/" />
+    </bean>
 </beans>

@@ -10,26 +10,21 @@
         <title>XENEO - Plugin Management</title>
     </h:head>
     <h:body>
-        <ui:composition template="templates/masterLayout.xhtml">
-            <ui:define name="left">
-                <h1>Plugin Management</h1>
-                <p:accordionPanel multiple="true" value="#{apm.plugins}" var="plugin">  
-                    <p:tab title="#{plugin.title}">    
-                        <h:form>   
-                            <ui:repeat value="#{plugin.properties}" var="property" varStatus="stat">                                
-                                <h:outputLabel for="property" value="#{property.name}" />                                
-                                <h:inputText id="property" value="#{property.value}" />
-                                <br />
-                            </ui:repeat>
-                            <h:commandButton action="#{apm.configurePlugin}" title="Configure Plugin" />
-                        </h:form>
-                    </p:tab>
-                </p:accordionPanel>
-            </ui:define>
-            <ui:define name="right">     
 
-            </ui:define>
-        </ui:composition>
+        <h1>Plugin Management</h1>
+        <p:accordionPanel multiple="true" value="#{apm.plugins}" var="plugin">  
+            <p:tab title="#{plugin.title}">    
+                <h:form>   
+                    <ui:repeat value="#{plugin.properties}" var="property" varStatus="stat">                                
+                        <h:outputLabel for="property" value="#{property.name}" />                                
+                        <h:inputText id="property" value="#{property.value}" />
+                        <br />
+                    </ui:repeat>
+                    <h:commandButton action="#{apm.configurePlugin}" title="Configure Plugin" />
+                </h:form>
+            </p:tab>
+        </p:accordionPanel>
+
     </h:body>
 </html>
 

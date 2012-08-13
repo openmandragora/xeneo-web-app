@@ -15,23 +15,11 @@
  */
 package org.xeneo.web.beans;
 
-import java.util.Iterator;
-import java.util.logging.Logger;
-import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseStream;
-import javax.faces.context.ResponseWriter;
-import javax.faces.render.RenderKit;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.xeneo.core.security.User;
-import org.xeneo.core.services.UserServices;
+
 
 /**
  *

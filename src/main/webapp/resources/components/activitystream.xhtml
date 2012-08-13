@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:cc="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="activities" required="true" shortDescription="A Collection of Activity Objects, which should be displayed by the stream" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <c:forEach items="#{cc.attrs.activities}" var="activity">
+            <div class="activity">
+                #{stream.formatActivity(activity.actionURI, activity.actor,activity.object, activity.target)} 
+            </div>        
+        </c:forEach>       
+    </cc:implementation>
+</html>
