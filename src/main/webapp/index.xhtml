@@ -10,6 +10,73 @@
         <title>XENEO - Profile Management</title>
     </h:head>
     <h:body>
-        <cc:activitystream activities="#{stream.activityStream}" />
+
+        <ui:composition template="templates/masterLayout.xhtml">
+
+            <ui:define name="message.insert"></ui:define>  
+            <ui:define name="header.insert"><ui:include src="includes/header.xhtml"/></ui:define>
+            <ui:define name="nav.insert"><ui:include src="includes/menuebar.xhtml"/></ui:define>
+            <ui:define name="main.insert">
+
+
+            </ui:define>
+            <ui:define name="aside.insert">
+
+                
+                
+                <h:form id="form">
+
+                    <p:growl id="msgs" showDetail="true" />
+                    
+                    <p:dataTable var="casemanagement" value="#{recentCasesTableBean.recentCases}" rows="10" paginator="true">
+
+                        <f:facet name="header">
+                            Recent Cases
+                        </f:facet>
+
+                        <p:column headerText="Case name">  
+                            <h:outputText value="#{casemanagement.casename}" />  
+                        </p:column>  
+
+                        <p:column headerText="Case type">  
+                            <h:outputText value="#{casemanagement.casetype}" />  
+                        </p:column> 
+
+                        <p:column style="width:4%">  
+                            <p:commandButton id="selectButton" update=":form:display" oncomplete="caseDialog.show()" icon="ui-icon-search" title="View">  
+                                <f:setPropertyActionListener value="#{casemanagement}" target="#{recentCasesTableBean.selectedCase}" />  
+                            </p:commandButton>  
+                        </p:column>
+
+                    </p:dataTable>
+
+                    <p:dialog header="Case Detail" widgetVar="caseDialog" resizable="false"   
+                              showEffect="fade" hideEffect="explode" modal="true">  
+
+                        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            
+
+                            <h:outputText value="Case name:" />  
+                            <h:outputText value="#{recentCasesTableBean.selectedCase.casename}" style="font-weight:bold"/>  
+
+                            <h:outputText value="Case type:" />  
+                            <h:outputText value="#{recentCasesTableBean.selectedCase.casetype}" style="font-weight:bold"/>  
+
+
+                            <h:outputText value="Case description:" />  
+                            <h:outputText value="#{recentCasesTableBean.selectedCase.casedescription}" style="font-weight:bold"/>  
+
+                        </h:panelGrid>  
+
+                    </p:dialog>  
+
+                </h:form>
+
+            </ui:define>
+            <ui:define name="footer.insert"></ui:define>
+
+        </ui:composition>
+
     </h:body>
 </html>

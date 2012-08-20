@@ -1,81 +1,107 @@
 
 html {
-	
-	height: 100%;
+    height: 100%;
 }
 
 body {
-	color: #666666;
-	font-family: Tahoma,Verdana,Helvetica,Geneva,Arial,sans-serif;
-	font-size: 12px;
-	margin: 15px auto;
-	width: 980px;
+    font-family: Tahoma,Verdana,Helvetica,Geneva,Arial,sans-serif;
+    font-size: 12px;
 }
 /*Template*/
+#profile_bar{
+    height:40px;
+    width:100%;
+    background-color: whitesmoke; 
+}
+
 #master{
     width:960px;
     margin-top:100px;
+    margin: auto;
 }
 
-
-#masterbottom{
+#message{
     width:960px;
+    height:50px;
+    margin-bottom: 10px;
+}
+
+header{
+    width:960px;
+    height:140px;
+    margin-bottom:10px;
+    background-color: whitesmoke;
+}
+
+#nav{
+    width:960px;
+    background-color: whitesmoke;
+    margin-bottom:10px;
+}
+
+#main{
+    width:650px;
+    min-height:600px;
+    background-color: whitesmoke;
     float:left;
 }
 
-#menue{
-    width:960px;
-    background-color: whitesmoke;
-    
-    margin-bottom:10px;}
-
-
-#wrap{
-    width:800px;
+aside{
+    width:300px;
     height:600px;
-    background-color: whitesmoke;
-    float:left;
-    
-    
-}
-#rightbar{
-    width:150px;
-    height:400px;
-    background-color: whitesmoke;
-    float:left;
-    
+    margin-bottom: 10px;
     margin-left:10px;
+    background-color: whitesmoke;
+    float:left;
+}
+
+footer{
+    width:960px;
+    height:20px;
+    background-color: whitesmoke;
+    float:left;
+}
+
+/*header*/
+#header_form{
+    float:right;
+}
+
+.panelgrid td, .panelgrid tr{
+    border:0 !important;
+    background-color: whitesmoke;
+}
+
+.log_button{
+    float:right;
+    margin-right:8px;
 }
 
 /*index*/
 
-.menuebar{
-    margin-left:0;
-    margin-top:0;
+#xeneo_logo{
+    height:100px;
+    margin:20px;
 }
 
 /*profile*/
 
-#profilepic{
-    width: 39px;
-    height:39px;
-    margin-left: 10px;
+#profile_form{
+    width:161px;
+    height:40px;
     float:right;
 }
 
 .pro_font{
     margin-top:10px;
-    margin-left: 10px;
+    margin-right:10px;
     font-family:Arial;
     font-size: 15px;
     color: grey;
-    float:left;
+    float:right;
+    vertical-align: central;
+    word-spacing: 10px;
 }
-
-ul {
-	list-style: none;	
-}
-
 
 /* Content */
 
@@ -94,26 +120,22 @@ ul {
 }
 
 .messages{
-   font-family:Arial;
-   font-size: 10px;
-   color: red; 
+    font-family:Arial;
+    font-size: 10px;
+    color: red; 
 }
 
 .buttons1{
-margin-left:27px;
-margin-top: 24px;
-margin-bottom: 20px;
+    margin-left:27px;
+    margin-top: 24px;
+    margin-bottom: 20px;
 }
 
 .buttons{
-margin-left:16px;
-margin-top: 24px;
-margin-bottom: 20px;
+    margin-left:16px;
+    margin-top: 24px;
+    margin-bottom: 20px;
 }
-
-
-
-
 
 #Userform{
     margin-top:10px;
@@ -135,7 +157,7 @@ margin-bottom: 20px;
     float:left;
     width:700px;
     background-color: white;
-    
+
 }
 #CaseTypeDiv{
     margin-left:0px;
@@ -172,6 +194,14 @@ margin-bottom: 20px;
     margin-left:20px;  
 }
 
+.availableUsers{
+    height:300px;
+    width:290px;
+    margin:0px;
+}
+
+
+
 /*Case Management*/
 
 #CaseForm{
@@ -183,15 +213,21 @@ ctDropdown{
     width: 300px;
 }
 
+#multiDialog{
+    width: auto;
+    height: auto;
+}
+
+
 /*Case management*/
 
 #inputtext{
     size: 100px;
-    
+
 }
 
 .panelclass td, .panelclass tr{
-    
+
     border:0 !important;
     vertical-align: top;
 }
@@ -213,10 +249,22 @@ ctDropdown{
 }
 
 .editors{
-    
+
     height:100px;
     width:200px;
 }
 .description{
     float:top;
 }
+
+
+/*Customization Primefaces Elements*/
+
+.ui-panel .ui-panel-titlebar {
+  padding:4px;
+}
+
+.ui-button {
+  margin-right:0;
+}
+

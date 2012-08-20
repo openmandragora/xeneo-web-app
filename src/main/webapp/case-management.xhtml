@@ -9,56 +9,85 @@
         <title>XENEO - Case Management</title>
     </h:head>
     <h:body>
-        <ui:composition template="templates/masterLayout.xhtml">            
-            
-            <ui:define name="menue.insert">
-                <h:form>
-                <p:menubar>  
-                    <p:submenu label="Case Management" icon="ui-icon-document">    
-                        <p:menuitem value="Add Case Type" action="#{casemanagement.toCaseTypeManagement()}"/>   
-                        <p:menuitem value="Add Case" action="#{casemanagement.toCaseManagement()}" />  
-                    </p:submenu>
-                    <p:submenu label="Options">
-                        <p:menuitem value="Change Account Data" action="#{casemanagement.toProfileManaged()}"/>
-                        <p:menuitem value="Add User" action="#{casemanagement.toadduser()}"/>
-                    </p:submenu>
-                </p:menubar>
-                </h:form>
-            </ui:define>
-            <ui:define name="profile.insert">
-                <p class="pro_font">Max Mustermann</p>
-                <h:graphicImage value="resources/img/placeholder.png" id="profilepic"/>
-            </ui:define>
-   
-            <ui:define name="wrap.insert">
-                <h:form>  
-                <p:panel header="Add Cases">  
-                    <h:panelGrid columns="2" styleClass="panelclass" cellpadding="5" id="panelgrid">  
-                          <h:outputText value="Case titel: " class="outputtext"/>  
-                          <p:inputText value="#{casemanagement.casename}"/>
-                     
-                          <h:outputText value="Case description: " class="description"/>
-                          <p:editor value="#{casemanagement.casedescription}" controls="bold italic underline strikethrough"/>
-                          
-                          <h:outputText value="Case type: " class="outputtext"/>  
-                          <p:selectOneMenu value="#{casemanagement.casetype}">   
-                          <f:selectItem itemLabel="Type 1" itemValue="1"/>  
-                          <f:selectItem itemLabel="Type 2" itemValue="2"/>  
-                          <f:selectItem itemLabel="Type 3" itemValue="3"/>  
-                          </p:selectOneMenu> 
-                     
-                       </h:panelGrid>
-                
-                    <p:commandButton value="Save Case" action="#{casemanagement.savecase()}"/>
-                </p:panel>
+        <ui:composition template="templates/masterLayout.xhtml">
+
+            <ui:define name="message.insert"></ui:define>  
+            <ui:define name="header.insert"><ui:include src="includes/header.xhtml"/></ui:define>
+            <ui:define name="nav.insert"><ui:include src="includes/menuebar.xhtml"/></ui:define>
+            <ui:define name="main.insert">
+
+                <h:form class="form">  
+                    <p:panel header="Add Cases">  
+                        <h:panelGrid columns="2" styleClass="panelclass" cellpadding="5" id="panelgrid">  
+                            <h:outputText value="Case titel: " class="outputtext"/>  
+                            <p:inputText value="#{casemanagement.casename}"/>
+
+                            <h:outputText value="Case description: " class="description"/>
+                            <p:editor value="#{casemanagement.casedescription}" controls="bold italic underline strikethrough"/>
+
+                            <h:outputText value="Case type: " class="outputtext"/>  
+                            <p:selectOneMenu value="#{casemanagement.casetype}">   
+                                <f:selectItem itemLabel="Type 1" itemValue="1"/>  
+                                <f:selectItem itemLabel="Type 2" itemValue="2"/>  
+                                <f:selectItem itemLabel="Type 3" itemValue="3"/>  
+                            </p:selectOneMenu> 
+
+                        </h:panelGrid>
+
+                        <p:commandButton value="Save Case" action="#{casemanagement.savecase()}"/>
+                    </p:panel>
                 </h:form> 
-      
+
             </ui:define>
-                
-            <ui:define name="rightbar.insert">
-                                       
+            <ui:define name="aside.insert">
+
+                <h:form id="form">
+
+
+
+                    <p:dataTable styleClass="availableUsers" var="user" value="#{tableBean.mediumCarsModel}" rows="10" paginator="true"  
+                                 emptyMessage="No Users found with given criteria" selection="#{tableBean.selectedUsers}">  
+
+                        <f:facet name="header">
+                            Add User to Case
+                        </f:facet>
+
+                        <p:column selectionMode="multiple" style="width:18px" />
+
+                        <p:column headerText="Firstname" filterBy="#{user.firstName}" filterMatchMode="contains">  
+                            <h:outputText value="#{user.firstName}" />  
+                        </p:column>  
+
+                        <p:column headerText="Lastname" filterBy="#{user.lastName}" filterMatchMode="contains">  
+                            <h:outputText value="#{user.lastName}" />  
+                        </p:column> 
+
+                        <f:facet name="footer">  
+                            <p:commandButton id="multiViewButton" value="Show added Users" icon="ui-icon-search"  
+                                             update=":form:displayMulti" oncomplete="multiCarDialog.show()" />  
+                        </f:facet>  
+                    </p:dataTable>
+
+                    <p:dialog id="multiDialog" header="New Case Saved" widgetVar="multiCarDialog"  
+                              showEffect="fade" hideEffect="explode">  
+
+
+                        <p>Added Users:</p>
+                        <p:dataList id="displayMulti"  
+                                    value="#{tableBean.selectedUsers}" var="selectedUser" type="unordered" itemType="disc">  
+                            #{selectedUser.firstName},#{selectedUser.lastName}  
+                        </p:dataList>
+
+                    </p:dialog>
+                      
+
+                </h:form>
+
             </ui:define>
+            <ui:define name="footer.insert"></ui:define>
+
         </ui:composition>
+
     </h:body>
 </html>
 

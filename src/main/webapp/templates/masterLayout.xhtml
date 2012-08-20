@@ -2,7 +2,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <h:head>        
         <h:outputScript library="js" name="html5.js" />
@@ -12,27 +15,56 @@
     </h:head>
 
     <h:body>
-        
-        <div id="master">
-        <div id="menue">
-            
-                <ui:insert name="menue.insert"></ui:insert>          
-        
-        </div>
-           
-        <div id="masterbottom">
-        <div id="wrap">
-            
-                 <ui:insert name="wrap.insert"></ui:insert>
 
+        <div id="profile_bar">
+
+            <h:form id="profile_form">
+                
+                <p:growl id="messages" autoUpdate="true"/>
+                
+                <p:menubar>  
+                    <p:submenu label="Account" icon="ui-icon-person">    
+                        <p:menuitem value="Change User Data" action="profile-management.xhtml" icon="ui-icon-gear"/>   
+                        <p:menuitem value="Change Password" action="profile-management.xhtml" icon="ui-icon-gear"/> 
+                        <p:separator />
+                        <p:menuitem value="Log Out" icon="ui-icon-close"/>
+                    </p:submenu>
+                </p:menubar>
+           
+            </h:form>
+           
+            <h:outputText value="#{user.firstName}" styleClass="pro_font"/>
+            <h:outputText value="#{user.lastName}" styleClass="pro_font"/>
+            
+
+        </div>
+
+        <div id="master">
+
+            <div id="message">
+                <ui:insert name="message.insert"></ui:insert>          
+            </div>    
+
+            <header>
+                <ui:insert name="header.insert"></ui:insert>          
+            </header>
+
+            <div id="nav">
+                <ui:insert name="nav.insert"></ui:insert>          
+            </div>
+
+            <section id="main">
+                <ui:insert name="main.insert"></ui:insert>
+            </section>
+
+            <aside>
+                <ui:insert name="aside.insert"></ui:insert>
+            </aside>
+
+            <footer>
+                <ui:insert name="footer.insert"></ui:insert>
+            </footer>   
         </div> 
-        <div id="rightbar">
-            
-                <ui:insert name="rightbar.insert"></ui:insert>          
-        
-        </div>
-        </div>
-        </div>  
-            
+
     </h:body>
 </html>
