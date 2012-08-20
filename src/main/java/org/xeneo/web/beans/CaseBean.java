@@ -38,6 +38,13 @@ public class CaseBean {
     private String casedescription;
     private String casetype;
 
+    public CaseBean(String casename, String casedescription, String casetype) {
+        this.casename = casename;
+        this.casedescription = casedescription;
+        this.casetype = casetype;
+    }
+
+    
     public String getCasedescription() {
         return casedescription;
     }

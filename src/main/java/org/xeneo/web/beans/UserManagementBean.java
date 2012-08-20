@@ -28,15 +28,25 @@ import org.springframework.stereotype.Component;
 @Scope("request")
 public class UserManagementBean {
 
-    private String firstname = "Alex";
-    private String lastname = "Ries";
-    private String email = "alex_ries@gmx.de";
+    private String firstname ;
+    private String lastname;
+    private String email;
     private String password;
     private String newpw;
     private String newpw2;
     private String TestPasswort = "JSF";
     private String fncolor;
 
+    public UserManagementBean(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
+    public UserManagementBean() {
+    }
+
+    
+    
     public void setFirstName(String firstname) {
         this.firstname = firstname;
     }
@@ -126,27 +136,4 @@ public class UserManagementBean {
         return null;
     }
 
-    public String toProfileManaged() {
-
-
-
-        return "profile-management";
-    }
-
-    public String toCaseTypeManagement() {
-
-
-
-        return "casetype-management";
-    }
-
-    public String toCaseManagement() {
-
-        return "case-management";
-    }
-
-    public String toadduser() {
-
-        return "add-user";
-    }
 }
