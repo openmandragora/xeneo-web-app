@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component("adduser")
-@Scope("request")
+@Scope("session")
 
 public class AddUserBean {
     

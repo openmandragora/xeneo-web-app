@@ -2,16 +2,15 @@ package org.xeneo.web.beans;
 
 import java.util.List;
 import java.util.Locale;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Component;
-import org.xeneo.core.activity.Object;
 import org.xeneo.core.activity.Activity;
 import org.xeneo.core.activity.ActivityRepository;
 import org.xeneo.core.activity.Actor;
+import org.xeneo.core.activity.Object;
 import org.xeneo.core.security.UserService;
 
 /**
@@ -22,7 +21,7 @@ import org.xeneo.core.security.UserService;
 @Scope("request")
 public class ActivityStreamBean {
 
-    private final static Logger logger = LoggerFactory.getLogger(ActivityStreamBean.class);
+    private final static org.slf4j.Logger logger = LoggerFactory.getLogger(ActivityStreamBean.class);
     @Autowired
     private ActivityRepository repository;
     @Autowired

@@ -9,32 +9,16 @@
         <title>XENEO - Profile Management</title>
     </h:head>
     <h:body>
-        <ui:composition template="templates/masterLayout.xhtml">            
+         <ui:composition template="templates/masterLayout.xhtml">
+            
+            <ui:define name="message.insert"></ui:define>  
+            <ui:define name="header.insert"><ui:include src="includes/header.xhtml"/></ui:define>
+            <ui:define name="nav.insert"><ui:include src="includes/menuebar.xhtml"/></ui:define>
+            <ui:define name="main.insert">
+                
+                 <h:form>
 
-            <ui:define name="menue.insert">
-                <h:form>
-                    <p:menubar>  
-                        <p:submenu label="Case Management" icon="ui-icon-document">    
-                            <p:menuitem value="add case type" action="#{adduser.toCaseTypeManagement()}"/>   
-                            <p:menuitem value="add case" action="#{adduser.toCaseManagement()}" />  
-                        </p:submenu>
-                        <p:submenu label="Options">
-                            <p:menuitem value="change user data" action="#{adduser.toProfileManaged()}"/>
-                            <p:menuitem value="change passwort" action="#{adduser.toProfileManaged()}"/>
-                            <p:menuitem value="change passwort" action="#{adduser.toadduser()}"/>
-                        </p:submenu>
-                    </p:menubar>
-                </h:form>
-            </ui:define>
-            <ui:define name="profile.insert">
-                <p class="pro_font">Max Mustermann</p>
-                <h:graphicImage value="resources/img/placeholder.png" id="profilepic"/>
-            </ui:define>
-
-            <ui:define name="wrap.insert">
-                <h:form>
-
-                    <p:panel header=" Change Userdata" id="panel">
+                    <p:panel header=" Change Userdata" styleClass="panel">
                           
                         <p:messages showDetail="true" autoUpdate="true"/>
                      
@@ -42,13 +26,13 @@
                             <h:panelGrid columns="2" styleClass="panelclass" cellpadding="5">
 
                                 <h:outputText class="labels" value="Vorname: "/>
-                                <p:inputText id="FN" value="#{adduser.firstName}" required="true"/>
+                                <p:inputText styleClass="FN" value="#{adduser.firstName}" required="true"/>
 
                                 <h:outputLabel class="labels" value="Nachname: " for="LN"/>
-                                <p:inputText id="LN" value="#{adduser.lastName}" required="true"/>
+                                <p:inputText styleClass="LN" value="#{adduser.lastName}" required="true"/>
 
                                 <h:outputLabel class="labels" value="E-Mail Adresse: " for="EA"/>
-                                <p:inputText id="EA" value="#{adduser.email}" required="true"/>
+                                <p:inputText styleClass="EA" value="#{adduser.email}" required="true"/>
 
                             </h:panelGrid>
                         </p:fieldset>
@@ -58,11 +42,11 @@
                             <h:panelGrid columns="2" styleClass="panelclass" cellpadding="5">
 
                                 <h:outputLabel class="labels" value="Neues Passwort: " for="NewPW"/> 
-                                <p:password id="NewPW"  value="#{adduser.newpw}" />
+                                <p:password styleClass="NewPW"  value="#{adduser.newpw}" />
 
 
                                 <h:outputLabel class="labels" value="Bestätigung Neues Passwort: " for="NewPW2"/>
-                                <p:password id="NewPW2" value="#{adduser.newpw2}" />
+                                <p:password styleClass="NewPW2" value="#{adduser.newpw2}" />
 
                             </h:panelGrid>
                         </p:fieldset>
@@ -76,12 +60,12 @@
                    </p:panel>
                    
                 </h:form>  
+                
             </ui:define>
-
-            <ui:define name="rightbar.insert">
-
-            </ui:define>
-        </ui:composition>
+            <ui:define name="aside.insert"></ui:define>
+            <ui:define name="footer.insert"></ui:define>
+            
+         </ui:composition>
     </h:body>
 </html>
 
